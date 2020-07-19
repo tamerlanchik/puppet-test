@@ -1,0 +1,5 @@
+[tprepo]
+name=Custom Repository
+baseurl=http://rpms.nl-mail.ru
+enabled=1
+gpgcheck=0

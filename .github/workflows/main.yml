@@ -40,3 +40,11 @@ jobs:
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
         TARGET: ${{ secrets.REMOTE_TARGET }}
+    
+    - name: Kick puppet
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: puppet apply ${{ secrets.REMOTE_TARGET }}/puppet.conf
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        privateKey: ${{ secrets.SERVER_SSH_KEY }}

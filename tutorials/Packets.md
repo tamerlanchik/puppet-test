@@ -50,6 +50,7 @@
 * [статья](#https://tresnet.ru/archives/1556) про готовый конфиг для node_exporter.
 * [статья](https://www.thegeekstuff.com/2015/02/rpm-build-package-example/) про создание rpm вообще
 * [ответ](https://unix.stackexchange.com/questions/429511/how-to-use-rpmbuild-to-build-a-rpm-package-from-binary-tarball) на форуме по упаковке бинаря в .rpm
+* ещё одна [статья](https://docs.fedoraproject.org/en-US/quick-docs/creating-rpm-packages/index.html) про Fedora
 * [скрипт](https://gist.github.com/fernandoaleman/1377211/d78d13bd8f134e7d9b9bc3da5895c859d7cbf294) по созданию репы (не использовался)
 
 Запускаем сборку:

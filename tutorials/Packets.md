@@ -47,7 +47,7 @@
     /*
 
 Ссылки:
-* [статья](#https://tresnet.ru/archives/1556) про готовый конфиг для node_exporter.
+* [статья](https://tresnet.ru/archives/1556) про готовый конфиг для node_exporter.
 * [статья](https://www.thegeekstuff.com/2015/02/rpm-build-package-example/) про создание rpm вообще
 * [ответ](https://unix.stackexchange.com/questions/429511/how-to-use-rpmbuild-to-build-a-rpm-package-from-binary-tarball) на форуме по упаковке бинаря в .rpm
 * ещё одна [статья](https://docs.fedoraproject.org/en-US/quick-docs/creating-rpm-packages/index.html) про Fedora

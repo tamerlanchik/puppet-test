@@ -37,3 +37,7 @@ class nginx {
     subscribe => File['conf.d/rpms.conf'],
   }
 }
+
+node 'puppetmaster' {
+  include nginx
+}

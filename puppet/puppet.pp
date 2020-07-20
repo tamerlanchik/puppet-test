@@ -38,6 +38,6 @@ class nginx {
   }
 }
 
-node 'puppetmaster' {
+node 'instance-1' {
   include nginx
 }

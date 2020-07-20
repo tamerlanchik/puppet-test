@@ -30,7 +30,7 @@ class nginx {
     ensure => latest,
   }
   service { 'nginx':
-    ensure => running,
+    ensure => stopped,
     enable => true,
     require => Package['nginx'],
     subscribe => File['nginx.conf'],

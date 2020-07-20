@@ -14,3 +14,4 @@
 
     deploy  ALL = NOPASSWD: /bin/puppet
 
+

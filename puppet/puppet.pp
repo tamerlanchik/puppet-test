@@ -33,8 +33,10 @@ class nginx {
     ensure => stopped,
     enable => true,
     require => Package['nginx'],
-    subscribe => File['nginx.conf'],
-    subscribe => File['conf.d/rpms.conf'],
+    subscribe => [
+      File['nginx.conf'], 
+      File['conf.d/rpms.conf'],
+    ]
   }
 }
 

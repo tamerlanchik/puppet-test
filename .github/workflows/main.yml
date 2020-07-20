@@ -24,15 +24,6 @@ jobs:
       with:
         fetch-depth: 1
 
-    # Runs a single command using the runners shell
-#     - name: Run a one-line script
-#       run: echo Hello, world!
-
-#     # Runs a set of commands using the runners shell
-#     - name: Run a multi-line script
-#       run: |
-#         echo Add other actions to build,
-#         echo test, and deploy your project.
     - name: Deploy to Staging server
       uses: easingthemes/ssh-deploy@v2.0.7
       env:
@@ -46,7 +37,8 @@ jobs:
     - name: Kick puppet
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: sudo puppet apply ${{ secrets.REMOTE_TARGET }}/puppet.pp
+        # command: sudo puppet apply ${{ secrets.REMOTE_TARGET }}/puppet.pp
+        command: exit 1
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.SERVER_SSH_KEY }}

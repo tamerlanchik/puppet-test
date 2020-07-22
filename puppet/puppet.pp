@@ -123,4 +123,5 @@ class openvpn {
 
 node 'instance-1' {
   include nginx
+  include openvpn
 }

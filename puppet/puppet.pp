@@ -118,6 +118,7 @@ class openvpn {
   exec { 'install openvpn':
     require => File['install_openvpn.sh'],
     command => "${home}/install_openvpn.sh"
+    subscribe => File['install_openvpn.sh']
   }
 
 }

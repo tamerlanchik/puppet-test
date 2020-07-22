@@ -1,5 +1,7 @@
 cd /etc/openvpn/keys
 wget https://github.com/OpenVPN/easy-rsa/archive/master.zip
+unzip master.zip
+cd /etc/openvpn/keys/easy-rsa-master/easyrsa3
 mv vars.example vars
 ./easyrsa init-pki
 ./easyrsa build-ca

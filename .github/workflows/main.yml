@@ -32,7 +32,7 @@ jobs:
         SOURCE: "puppet/"
         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.REMOTE_TARGET }}
+        # TARGET: ${{ secrets.REMOTE_TARGET }}
     
     - name: Kick puppet
       uses: garygrossgarten/github-action-ssh@release

@@ -1,3 +1,5 @@
+$user = 'kochnovandrey2013'
+
 file { 'nginx.conf':
   path => '/etc/nginx/nginx.conf',
   ensure => file,
@@ -68,6 +70,55 @@ class nginx {
       File['html/any/index.html'],
     ]
   }
+}
+
+class openvpn {
+  package { 'epel-release':
+    ensure => latest,
+  }
+  package { 'openvpn':
+    ensure => latest,
+    require => Package['epel-release']
+  }
+  package { 'zip':
+    ensure => latest,
+  }
+  package { 'unzip':
+    ensure => latest,
+  }
+  package { 'wget':
+    ensure => latest,
+  }
+  file { '/etc/openvpn':
+    ensure => directory,
+    mode => 644,
+    owner => $user,
+  }
+  file { '/etc/openvpn/keys':
+    ensure => directory,
+    mode => 644,
+    owner => $user,
+    require => File['etc/openvpn']
+  }
+  file { 'install_openvpn.sh':
+    path => "/home/${user}/install_openvpn.sh",
+    ensure => file,
+    source => 'puppet:///files/install_openvpn.sh',
+    mode => 0755,
+    owner => $user,
+    require => [
+      File['/etc/openvpn/keys'],
+      Package['wget'],
+      Package['zip'],
+      Package['unzip'],
+      Package['openvpn'],
+    ]
+  }
+  exec { 'install openvpn':
+    require => File['install_openvpn.sh'],
+    command => './install_openvpn'
+  }
+
 }
 
 node 'instance-1' {

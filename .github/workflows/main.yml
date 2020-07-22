@@ -37,7 +37,7 @@ jobs:
     - name: Kick puppet
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: sudo puppet apply ${{ secrets.REMOTE_TARGET }}/puppet.pp
+        command: sudo puppet apply ${{ secrets.REMOTE_TARGET }}/manifests/init.pp
         # command: exit 1
         host: ${{ secrets.REMOTE_HOST }}
         username: ${{ secrets.REMOTE_USER }}

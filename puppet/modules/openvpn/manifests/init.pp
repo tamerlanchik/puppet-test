@@ -1,4 +1,5 @@
 class openvpn {
+  $files = 'puppet:///modules/openvpn/'
   package { 'epel-release':
     ensure => latest,
   }
@@ -29,7 +30,7 @@ class openvpn {
   file { 'install_openvpn.sh':
     path => "${home}/install_openvpn.sh",
     ensure => file,
-    source => 'puppet:///modules/install_openvpn.sh',
+    source => "${files}/install_openvpn.sh",
     mode => 0755,
     owner => $user,
     require => [
@@ -48,7 +49,7 @@ class openvpn {
   file { '/etc/openvpn/server.conf':
     path => "/etc/openvpn/server.conf",
     ensure => file,
-    source => 'puppet:///modules/openvpn/server.conf',
+    source => "${files}/server.conf",
     mode => 0755,
     owner => $user,
   }

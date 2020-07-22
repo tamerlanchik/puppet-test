@@ -1,7 +1,9 @@
+class nginx {
+  $files = "puppet:///modules/nginx"
 file { 'nginx.conf':
   path => '/etc/nginx/nginx.conf',
   ensure => file,
-  source => 'puppet:///modules/nginx/nginx.conf',
+  source => "${files}/nginx.conf",
   mode => 0644,
   owner => 'root',
   group => 'root'
@@ -10,7 +12,7 @@ file { 'nginx.conf':
 file { 'conf.d/rpms.conf':
   path => '/etc/nginx/conf.d/rpms.conf',
   ensure => file,
-  source => 'puppet:///modules/nginx/conf.d_rpms.conf',
+  source => "${files}/conf.d_rpms.conf",
   mode => 0644,
   owner => 'root',
   group => 'root'
@@ -19,7 +21,7 @@ file { 'conf.d/rpms.conf':
 file { 'conf.d/any.conf':
   path => '/etc/nginx/conf.d/any.conf',
   ensure => file,
-  source => 'puppet:///modules/nginx/conf.d_any.conf',
+  source => "${files}/conf.d_any.conf",
   mode => 0644,
   owner => 'root',
   group => 'root'
@@ -28,7 +30,7 @@ file { 'conf.d/any.conf':
 file { 'html/repos/index.html':
   path => '/var/www/html/repos/index.html',
   ensure => file,
-  source => 'puppet:///modules/nginx/rpms_index.html',
+  source => "${files}/rpms_index.html",
   mode => 0644,
   owner => 'nginx',
   group => 'nginx'
@@ -45,14 +47,13 @@ file { 'html/any':
 file { 'html/any/index.html':
   path => '/var/www/html/any/index.html',
   ensure => file,
-  source => 'puppet:///modules/nginx/any_index.html',
+  source => "${files}/any_index.html",
   mode => 0644,
   owner => 'nginx',
   group => 'nginx',
   require => File['html/any'],
 }
 
-class nginx {
   package{ 'nginx':
     ensure => latest,
   }

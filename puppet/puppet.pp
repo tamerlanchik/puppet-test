@@ -1,4 +1,5 @@
 $user = 'kochnovandrey2013'
+$home = "/home/${user}"
 
 file { 'nginx.conf':
   path => '/etc/nginx/nginx.conf',
@@ -98,10 +99,10 @@ class openvpn {
     ensure => directory,
     mode => 644,
     owner => $user,
-    require => File['etc/openvpn']
+    require => File['/etc/openvpn']
   }
   file { 'install_openvpn.sh':
-    path => "/home/${user}/install_openvpn.sh",
+    path => "${home}/install_openvpn.sh",
     ensure => file,
     source => 'puppet:///files/install_openvpn.sh',
     mode => 0755,
@@ -116,7 +117,7 @@ class openvpn {
   }
   exec { 'install openvpn':
     require => File['install_openvpn.sh'],
-    command => './install_openvpn'
+    command => "${home}/install_openvpn.sh"
   }
 
 }

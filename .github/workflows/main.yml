@@ -39,6 +39,35 @@ jobs:
       with:
         command: sudo puppet apply ${{ secrets.REMOTE_TARGET }}/manifests/init.pp
         # command: exit 1
-        host: ${{ secrets.REMOTE_HOST }}
+        host: ${{ secrets.REMOTE_HOS }}
         username: ${{ secrets.REMOTE_USER }}
         privateKey: ${{ secrets.SERVER_SSH_KEY }}
+    
+    - name: send custom message
+      uses: appleboy/telegram-action@master
+      if: ${{ failure() }}
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          The action for ${{ github.event_name }} event failed.
+  
+  notify:
+    runs-on: ubuntu-latest
+
+    if: always()
+    needs: build
+    steps:
+    - name: send alert message
+      uses: appleboy/telegram-action@master
+      if: env.WORKFLOW_CONCLUSION == 'failure'
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          2: The ${{ github.event_name }} event failed.
+
+  
+
+
+  

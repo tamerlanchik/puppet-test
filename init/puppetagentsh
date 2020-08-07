@@ -1,8 +1,8 @@
 #!/bin/bash
 # installing puppet-agent
 
-server=$1
-certname=$2
+server=${1?"Need puppetserver address at $1"}
+certname=${2?"Need puppet-slave host name (for cert) at $2"}
 environment=${3:-"production"}
 echo "Installing puppet-agent..."
 rpm -Uvh http://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm

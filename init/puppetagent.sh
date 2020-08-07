@@ -31,5 +31,5 @@ echo "Puppet-agent config filled"
 
 puppet ssl bootstrap
 echo "Certificate signed"
-echo "export PATH=$PATH:/opt/puppetlabs/bin" >> ~/.profile
+echo "export PATH=$PATH:/opt/puppetlabs/bin" >> ~/.bash_profile
 echo "Run 'puppetserver ca sign --certname <name>' on master and 'puppet ssl bootstrap' here"

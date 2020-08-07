@@ -1,0 +1,31 @@
+#!/bin/bash
+# installing puppet-agent
+
+server=$1
+certname=$2
+environment=${3:-"production"}
+echo "Installing puppet-agent..."
+rpm -Uvh http://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm
+echo "Puppet repo added"
+yum install -y puppet-agent epel-release
+echo "Installed: puppet-agent"
+export PATH=/opt/puppetlabs/bin:$PATH
+
+cat > /etc/puppetlabs/puppet/puppet.conf <<- EOF
+[main]
+server = ${server}
+
+[agent]
+certname = ${certname}
+autosign = true
+environment = ${environment}
+splay = false
+listen = true
+EOF
+
+echo "Puppet-agent config filled"
+
+puppet ssl bootstrap
+
+echo "Certificate signed"
+echo "Run 'puppetserver ca sign --certname <name>' on master and 'puppet ssl bootstrap' here"

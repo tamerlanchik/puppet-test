@@ -1,9 +1,10 @@
 #!/bin/bash
 # installing puppet-agent
 
-server=${1?"Need puppetserver address at \$1"}
+server=${1?"Need puppetserver address at \$1"
 certname=${2?"Need puppet-slave host name (for cert) at \$2"}
-environment=${3:-"production"}
+server_ip=$3
+environment=${4:-"production"}
 echo "Installing puppet-agent..."
 rpm -Uvh http://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm
 echo "Puppet repo added"
@@ -23,9 +24,12 @@ splay = false
 listen = true
 EOF
 
+if [ $server_ip ne '']; then
+  echo "${server_ip}  ${server}" >> /etc/hosts;
+fi
 echo "Puppet-agent config filled"
 
 puppet ssl bootstrap
-
 echo "Certificate signed"
+echo "export PATH=$PATH:/opt/puppetlabs/bin" >> ~/.profile
 echo "Run 'puppetserver ca sign --certname <name>' on master and 'puppet ssl bootstrap' here"

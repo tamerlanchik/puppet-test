@@ -44,4 +44,15 @@ sudo DNS_ALT_NAMES=$server_names /usr/local/bin/docker-compose up -d || exit 1
 
 sudo systemctl enable docker-compose-puppetmaster
 
+interval=${2:-5}
+tm=${3:-100}
+
+until [[ $(docker ps | grep -e "\(healthy\).*pupperware_" | wc -l) == 3 || $tm -le 0 ]]
+do
+    echo "Waiting: ${tm}..."
+    sleep $interval
+    (( tm-=$interval ))
+done
+echo "Docker-compose containers up!"
+
 echo "Puppetmaster installed and switched on!"

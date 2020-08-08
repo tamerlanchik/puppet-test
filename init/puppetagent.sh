@@ -6,13 +6,13 @@ certname=${2?"Need puppet-slave host name (for cert) at \$2"}
 server_ip=$3
 environment=${4:-"production"}
 echo "Installing puppet-agent..."
-rpm -Uvh http://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm
+sudo rpm -Uvh http://yum.puppetlabs.com/puppet-release-el-7.noarch.rpm
 echo "Puppet repo added"
-yum install -y puppet-agent epel-release
+sudo yum install -y puppet-agent epel-release
 echo "Installed: puppet-agent"
 export PATH=/opt/puppetlabs/bin:$PATH
 
-cat > /etc/puppetlabs/puppet/puppet.conf <<- EOF
+sudo cat > /etc/puppetlabs/puppet/puppet.conf <<- EOF
 [main]
 server = ${server}
 

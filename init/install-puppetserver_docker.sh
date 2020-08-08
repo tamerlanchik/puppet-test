@@ -14,9 +14,9 @@ if [[ ! -d "~/pupperware" ]]; then
   rm ~/pupperware.zip;
 fi
 
-if [[ ! -f "/usr/local/bin/docker-compose" ]]; then
-  ./install-docker-compose.sh;
-fi
+# if [[ ! -f "/usr/local/bin/docker-compose" ]]; then
+#   ./install-docker-compose.sh;
+# fi
 
 cat > /etc/systemd/system/docker-compose-puppetmaster.service <<- EOF
 # /etc/systemd/system/docker-compose-puppetmaste.service

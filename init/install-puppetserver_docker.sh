@@ -40,7 +40,7 @@ EOF
 
 sudo mv ~/docker-compose-puppetmaster.service /etc/systemd/system/docker-compose-puppetmaster.service || exit 1
 
-sudo cd /usr/src/pupperware || exit 1
+cd /usr/src/pupperware || exit 1
 # First run requires DNS_ALT_NAMES for setup
 sudo DNS_ALT_NAMES=$server_names /usr/local/bin/docker-compose up -d || exit 1
 

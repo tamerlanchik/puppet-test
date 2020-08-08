@@ -1,7 +1,7 @@
 #!/bin/bash
 # installing puppet-agent
 
-server=${1?"Need puppetserver address at \$1"
+server=${1?"Need puppetserver address at \$1"}
 certname=${2?"Need puppet-slave host name (for cert) at \$2"}
 server_ip=$3
 environment=${4:-"production"}

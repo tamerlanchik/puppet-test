@@ -28,8 +28,8 @@ After=docker.service
 
 [Service]
 Restart=always
-WorkingDirectory=/usr/src/pupperware
-ExecStart=/usr/local/bin/docker-compose up -f docker-compose.yml -d
+WorkingDirectory=/usr/src/pupperware/
+ExecStart=/usr/local/bin/docker-compose up
 ExecStop=/usr/local/bin/docker-compose down
 
 [Install]

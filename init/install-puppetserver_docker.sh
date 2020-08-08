@@ -10,7 +10,7 @@ fi
 
 if [[ ! -d "~/pupperware" ]]; then
   sudo yum install -y unzip
-  sudo unzip ~/pupperware.zip -d /usr/src/;
+  sudo unzip ~/pupperware.zip -d /usr/src/pupperware;
   rm ~/pupperware.zip;
 fi
 
@@ -18,7 +18,7 @@ fi
 #   ./install-docker-compose.sh;
 # fi
 
-sudo cat > /etc/systemd/system/docker-compose-puppetmaster.service <<- EOF
+cat > ~/docker-compose-puppetmaster.service <<- EOF
 # /etc/systemd/system/docker-compose-puppetmaste.service
 [Unit]
 Description=Docker Compose Puppetmaster
@@ -37,9 +37,11 @@ TimeoutStartSec=0
 WantedBy=multi-user.target
 EOF
 
-sudo cd /usr/src/pupperware
+sudo mv ~/docker-compose-puppetmaster.service /etc/systemd/system/docker-compose-puppetmaster.service || exit 1
+
+sudo cd /usr/src/pupperware || exit 1
 # First run requires DNS_ALT_NAMES for setup
-sudo DNS_ALT_NAMES=$server_names /usr/local/bin/docker-compose up -d
+sudo DNS_ALT_NAMES=$server_names /usr/local/bin/docker-compose up -d || exit 1
 
 sudo systemctl enable docker-compose-puppetmaster
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 # installing puppet-server
 
-server_names=${1?"Need puppetserver address at \$1"
+server_names=${1?"Need puppetserver address at \$1"}
 
 # getting archive
 if [[ ! -f "~/pupperware.zip" ]]; then

@@ -10,7 +10,8 @@ fi
 
 if [[ ! -d "~/pupperware" ]]; then
   sudo yum install -y unzip
-  sudo unzip ~/pupperware.zip -d /usr/src/pupperware;
+  unzip ~/pupperware.zip
+  sudo mv ~/pupperware-master /usr/src/pupperware;
   rm ~/pupperware.zip;
 fi
 
